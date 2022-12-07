@@ -5,7 +5,7 @@ module.exports = {
 	aliases: [],
 	description: 'removes the task reacted to from !schedule', 
 	usage: '',
-	execute: async(reaction, user) => {
+	run: async(reaction, user) => {
 
 		var messageData = reaction.message.content.split('**'); 
 

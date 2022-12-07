@@ -6,7 +6,7 @@ module.exports = {
 	aliases: [],
 	description: 'displays the current queue of scheduled tasks and their status',
 	usage: '!schedule',
-	execute: async(message, args, client)=>{
+	run: async(message, args, client)=>{
         
 		const authorID = message.author.id
 		const taskObj = await asmt_queue.sync();

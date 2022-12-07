@@ -6,7 +6,7 @@ module.exports = {
 	aliases: [],
 	description: 'helps user organize their tasks by adding them to a queue',
 	usage: '!task [time(24 hours)] [task description]',
-	execute: async(message, args, client)=>{
+	run: async(message, args, client)=>{
 	
 		if(args.length < 1){
 			message.channel.send('error: no time or time interval given bozo'); return;
