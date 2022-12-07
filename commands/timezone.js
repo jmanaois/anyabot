@@ -5,7 +5,7 @@ module.exports = {
 	aliases: [],
 	description: 'allows user to set their own timezone for task reminders using an offset from UTC timezone',
 	usage: '!timezone [+/-offset]',
-    run: async(message, args, client)=>{	
+	execute: async(message, args, client)=>{	
 		if(args.length < 1){
 			message.channel.send('no time offset given bozo'); return;
 		}

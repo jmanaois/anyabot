@@ -5,7 +5,7 @@ module.exports = {
 	aliases: [],
 	description: 'sets a reminder for a given time, or for a given interval from the current time',
 	usage: '!reminder [time(24 hours)] [reminder message]',
-	run: async(message, args) => {
+	execute: async(message, args) => {
 	
 		if(args.length < 1){
 			message.channel.send('error: no time or time interval given bozo'); return;
