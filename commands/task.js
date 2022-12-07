@@ -50,8 +50,8 @@ module.exports = {
 					const tag = await asmt_queue.create({
 						taskname: args.slice(1).join(' '),
 						user: client.users.cache.get(userID).username,
-						start_hour: start_h,
-						start_min: start_m,
+						startHr: start_h,
+						startMin: start_m,
 					});
 					//message.react('✅');
 					

@@ -12,7 +12,7 @@ module.exports = {
 		if(messageData.length < 2){ return; }
 		const taskReacted = await asmt_queue.findOne({
 			where: {
-				taskname:messageData[1],
+				asmtname:messageData[1],
 				user: user.username
 			}
 		});
@@ -21,7 +21,7 @@ module.exports = {
 			reaction.message.channel.send('js, \"' + messageData[1] + '\" was removed');
 			await asmt_queue.destroy({
 				where: {
-					taskname:messageData[1],
+					asmtname:messageData[1],
 					user: user.username
 				}
 			});

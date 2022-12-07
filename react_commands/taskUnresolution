@@ -13,7 +13,7 @@ module.exports = {
 		if(messageData.length < 2){ return; }
 		const taskReacted = await asmt_queue.findOne({
 			where: {
-				taskname:messageData[1],
+				asmtname:messageData[1],
 				user: user.username
 			}
 		});
@@ -22,7 +22,7 @@ module.exports = {
 			reaction.message.channel.send('yikes \"' + messageData[1] + '\" was marked unresolved');
 			await asmt_queue.update({ completed: false }, {
 				where: {
-					taskname:messageData[1],
+					asmtname:messageData[1],
 					user: user.username
 				}
 			});

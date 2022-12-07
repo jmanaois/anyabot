@@ -32,7 +32,7 @@ for (const file of reactFiles) {
 //===== bot commands =====//
 
 client.once('ready', () => {
-	console.log('Bot setup successful');
+	console.log('bot setup successful');
 	asmt_queue.sync({force: true});
 	users.sync({force: true});
 }); 

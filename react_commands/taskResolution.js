@@ -25,7 +25,7 @@ module.exports = {
 		if(messageData.length < 2){ return; }
 		const taskReacted = await asmt_queue.findOne({
 			where: {
-				taskname:messageData[1],
+				asmtname:messageData[1],
 				user: user.username
 			}
 		});
@@ -37,7 +37,7 @@ module.exports = {
 			client.users.cache.get(user.id).send("thank god u completed '" + messageData[1] +  "' here's some peanuts lol",{files: [meme_link]});
 			await asmt_queue.update({ completed: true }, {
 				where: {
-					taskname:messageData[1],
+					asmtname:messageData[1],
 					user: user.username
 				}
 			});
