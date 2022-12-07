@@ -14,7 +14,6 @@ const{ prefix, token } = require('./auth.json');
 //===== startup bot =====//
 
 console.log('bot on');
-client.login(token);
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const reactFiles = fs.readdirSync('./react_commands').filter(file => file.endsWith('.js'));
@@ -82,3 +81,4 @@ client.on('message', message => {
 		message.channel.send('an unknown error occurred.');
 	}
 }); 
+client.login(token);

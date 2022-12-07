@@ -6,7 +6,7 @@
     "author": "Julian Manaois",
     "dependencies": {
         "discord.io": "^2.5.3",
-        "discord.js": "^14.7.1",
+        "discord.js": "^12.5.3",
         "fs": "^0.0.1-security",
         "node": "^19.2.0",
         "sequelize": "^6.26.0",
