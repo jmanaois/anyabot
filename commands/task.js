@@ -48,7 +48,7 @@ module.exports = {
 			if(args.length > 1){
 				try {
 					const tag = await asmt_queue.create({
-						taskname: args.slice(1).join(' '),
+						asmtname: args.slice(1).join(' '),
 						user: client.users.cache.get(userID).username,
 						startHr: start_h,
 						startMin: start_m,
@@ -60,7 +60,7 @@ module.exports = {
 						client.setTimeout(async () => {
 							var taskToRemind = await asmt_queue.findOne({
 								where: {
-									taskname: args.slice(1).join(' '),
+									asmtname: args.slice(1).join(' '),
 									user: client.users.cache.get(userID).username
 								}
 							});

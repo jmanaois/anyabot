@@ -16,9 +16,9 @@ module.exports = {
 		const myTasks = await asmt_queue.findAll({ where: { user: client.users.cache.get(authorID).username } })
 		
 		await Promise.all(myTasks.map(async (task) => {	
-			const taskName = task.taskname;
+			const taskName = task.asmtname;
 			
-			var start_h = task.start_hour; var start_m = task.start_min;
+			var start_h = task.startHr; var start_m = task.startMin;
 			userEntry = await users.findOne({ where: {user_id:message.author.id} });
 			if(userEntry){
 				var offset = await userEntry.get('timezone');
