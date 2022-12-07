@@ -23,26 +23,36 @@ client.emotes = config.emoji;
 
 const { SpotifyPlugin } = require('@distube/spotify')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
-const{ prefix, token } = require('./auth.json');
+const{ token } = require('./auth.json');
 
+fs.readdir('./commands/', (err, files) => {
+    if (err) return console.log('no commands found')
+    const jsFiles = files.filter(f => f.split('.').pop() === 'js')
+    if (jsFiles.length <= 0) return console.log('no commands found')
+    jsFiles.forEach(file => {
+      const cmd = require(`./commands/${file}`)
+      console.log(`Loaded ${file}`)
+      client.commands.set(cmd.name, cmd)
+      if (cmd.aliases) cmd.aliases.forEach(alias => client.aliases.set(alias, cmd.name))
+    })
+  })
 
+  fs.readdir('./react_commands/', (err, files) => {
+    if (err) return console.log('no commands found')
+    const jsFiles = files.filter(f => f.split('.').pop() === 'js')
+    if (jsFiles.length <= 0) return console.log('no commands found')
+    jsFiles.forEach(file => {
+      const cmd = require(`./react_commands/${file}`)
+      console.log(`Loaded ${file}`)
+      client.commands.set(cmd.emoji, cmd)
+      if (cmd.aliases) cmd.aliases.forEach(alias => client.aliases.set(alias, cmd.name))
+    })
+  })
 //===== startup bot =====//
 
 console.log('bot on');
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-const reactFiles = fs.readdirSync('./react_commands').filter(file => file.endsWith('.js'));
 
-
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-}
-
-for (const file of reactFiles) {
-	const command = require(`./react_commands/${file}`);
-	client.reactCommands.set(command.emoji, command); 
-}
 
 //===== bot commands =====//
 
@@ -53,49 +63,12 @@ client.once('ready', () => {
 }); 
 
 
-client.on('messageReactionAdd', async (reaction, user) => {
-
-	if(reaction.partial){
-		try{
-			await reaction.fetch();
-		}catch(error){
-			console.error('an error occurred while fetching: ', error);
-			return;
-		}
-	}
-
-	if(reaction.message.author.id === client.user.id){ 
 
 
-		if(!client.reactCommands.has(reaction.emoji.name)){ console.log('reaction command not found'); return; }
-
-		try{
-			client.reactCommands.get(reaction.emoji.name).execute(reaction, user, client);
-		}catch(error){
-			console(error);
-			message.channel.send('an unknown error occurred');
-		}
-		
-	}
-
-});
 
 
-client.on('message', message => {
-	if(!message.content.startsWith(prefix) || message.author.bot){ return; }
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const command = args.shift().toLowerCase();
-
-	if(!client.commands.has(command)){ console.log('command not found'); return; }
-
-	try{
-		client.commands.get(command).execute(message, args, client);
-	}catch(error){
-		console.error(error);
-		message.channel.send('an unknown error occurred.');
-	}
-}); 
+// music bot 
 
 client.distube = new DisTube(client, {
   leaveOnStop: false,
@@ -129,7 +102,7 @@ client.on('messageCreate', async message => {
   })
   
   const status = queue =>
-    `Volume: \`${queue.volume}%\` | Filter: \`${queue.filters.names.join(', ') || 'Off'}\` | Loop: \`${
+    `vol: \`${queue.volume}%\` | filt: \`${queue.filters.names.join(', ') || 'off'}\` | loop: \`${
       queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Off'
     }\` | Autoplay: \`${queue.autoplay ? 'On' : 'Off'}\``
   client.distube
