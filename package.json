@@ -1,0 +1,13 @@
+{
+    "name": "AnyaBot",
+    "version": "1.0.0",
+    "description": "AnyaBot for Discord use.",
+    "main": "bot.js",
+    "author": "Julian Manaois",
+    "dependencies": {
+        "discord": "^0.8.2",
+        "discord.js": "^14.7.1",
+        "sequelize": "^6.26.0",
+        "sqlite3": "^5.1.2"
+    }
+}
