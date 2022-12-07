@@ -8,7 +8,7 @@ const sequelize = new Sequelize('database', 'user', 'password', {
 });
 
 const asmt_queue = sequelize.define('asmt_queue', {
-	taskname: {
+	asmtname: {
 			type: Sequelize.STRING,
 			primaryKey: true,
 	},
@@ -16,11 +16,11 @@ const asmt_queue = sequelize.define('asmt_queue', {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
-	start_hour: {
+	startHr: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
 	},
-	start_min: {
+	startMin: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
 	},
@@ -33,4 +33,4 @@ const asmt_queue = sequelize.define('asmt_queue', {
 });
 
 
-module.exports = task_queue;
+module.exports = asmt_queue;
