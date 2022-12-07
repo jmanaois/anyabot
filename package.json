@@ -6,6 +6,7 @@
     "author": "Julian Manaois",
     "dependencies": {
         "discord.js": "^14.7.1",
+        "fs": "^0.0.1-security",
         "sequelize": "^6.26.0",
         "sqlite3": "^5.1.2"
     }
