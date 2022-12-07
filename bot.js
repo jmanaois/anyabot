@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
-task_queue = require('./sqlitedb');
+asmt_queue = require('./sqlitedb');
 users = require('./sqlitedb-users');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.reactCommands = new Discord.Collection();
 
-const{ prefix, token } = require('./config.json');
+const{ prefix, token } = require('./auth.json');
 
 
 //===== startup bot =====//
@@ -34,7 +34,7 @@ for (const file of reactFiles) {
 
 client.once('ready', () => {
 	console.log('Bot setup successful');
-	task_queue.sync({force: true});
+	asmt_queue.sync({force: true});
 	users.sync({force: true});
 }); 
 
@@ -59,7 +59,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 			client.reactCommands.get(reaction.emoji.name).execute(reaction, user, client);
 		}catch(error){
 			console(error);
-			message.channel.send('An unknown error occurred');
+			message.channel.send('an unknown error occurred');
 		}
 		
 	}
@@ -79,6 +79,6 @@ client.on('message', message => {
 		client.commands.get(command).execute(message, args, client);
 	}catch(error){
 		console.error(error);
-		message.channel.send('An unknown error occurred.');
+		message.channel.send('an unknown error occurred.');
 	}
 }); 
